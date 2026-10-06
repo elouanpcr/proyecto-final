@@ -1,0 +1,38 @@
+:root { --fondo:#f1f4f2; --tinta:#17262b; --marca:#14393f; --borde:#cfd8d4; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--fondo); color:var(--tinta);
+       font-family:"Segoe UI", system-ui, sans-serif; line-height:1.55; }
+header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+         gap:12px; padding:14px 24px; background:var(--marca); }
+.marca { color:#fff; font-size:1.4rem; font-weight:700; text-decoration:none; }
+nav a { color:#cfe6dc; margin-left:18px; text-decoration:none; }
+nav a:hover, nav a:focus-visible { color:#fff; text-decoration:underline; }
+main { max-width:720px; margin:0 auto; padding:32px 20px 60px; }
+h1 { font-size:2rem; line-height:1.2; margin:0 0 20px; }
+.buscador { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
+input[type=text] { flex:1 1 220px; padding:12px; font-size:1rem; border:2px solid var(--borde); border-radius:6px; }
+button { padding:12px 20px; font-size:1rem; border:0; border-radius:6px; cursor:pointer;
+         background:var(--marca); color:#fff; }
+button:hover { filter:brightness(1.2); }
+button.secundario { background:transparent; color:var(--marca); border:2px solid var(--marca); }
+:focus-visible { outline:3px solid #e0a800; outline-offset:2px; }
+.resultado { border-left:14px solid var(--c); background:#fff; padding:20px 24px; border-radius:4px; }
+.resultado h2 { margin:0 0 4px; font-size:1.6rem; color:var(--c); }
+.resultado .item { margin:0; color:#5b6b70; }
+.tip { margin-top:12px; }
+dt { font-weight:700; margin-top:12px; } dd { margin:0; }
+.franja { border-left:10px solid var(--c); background:#fff; padding:6px 18px; margin:12px 0; border-radius:4px; }
+.franja h2 { font-size:1.15rem; color:var(--c); margin:10px 0 4px; }
+.aviso { background:#fff; border:1px solid var(--borde); padding:14px 20px; border-radius:4px; }
+.historial { margin-top:32px; }
+.historial h3 { margin:0 0 8px; font-size:1rem; }
+.inline { display:inline; }
+.chip { display:inline-block; margin:3px 6px 3px 0; padding:5px 12px; border-radius:999px; background:#dfe8e3;
+        color:var(--marca); font-size:.95rem; text-decoration:none; border:0; }
+button.chip { cursor:pointer; } button.chip:hover, a.chip:hover { background:#cadbd2; filter:none; }
+button.enlace { background:none; color:var(--marca); padding:0 4px; text-decoration:underline; }
+.limpiar { margin-left:8px; font-size:.9rem; color:#8a3b2f; }
+fieldset { background:#fff; border:1px solid var(--borde); border-radius:4px; margin:0 0 14px; }
+legend { font-weight:700; padding:0 6px; }
+.opcion { display:inline-block; margin:4px 10px 4px 0; padding:3px 10px; border-left:6px solid var(--c); background:#f6f8f7; }
+@media (prefers-reduced-motion: no-preference) { button { transition: filter .15s; } }

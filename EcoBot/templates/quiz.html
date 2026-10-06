@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Quiz · EcoBot{% endblock %}
+{% block contenido %}
+{% if resp %}
+<h1>Obtuviste {{ puntos }} de {{ total }}</h1>
+{% for i, r, c in resp %}
+<section class="franja" style="--c: {{ contenedores[c].color }}">
+    <p><strong>{{ i|capitalize }}</strong>: va en el contenedor {{ c }}.
+    {% if r == c %}Correcto.{% else %}Elegiste {{ r or 'ninguno' }}.{% endif %}</p>
+</section>
+{% endfor %}
+<p><a href="{{ url_for('quiz') }}">Jugar de nuevo</a></p>
+{% else %}
+<h1>¿En qué contenedor va?</h1>
+<form method="POST">
+    {% for i in items %}
+    <fieldset>
+        <legend>{{ i|capitalize }}</legend>
+        <input type="hidden" name="item" value="{{ i }}">
+        {% for k, c in contenedores.items() %}
+        <label class="opcion" style="--c: {{ c.color }}"><input type="radio" name="r_{{ i }}" value="{{ k }}" required>{{ k }}</label>
+        {% endfor %}
+    </fieldset>
+    {% endfor %}
+    <button type="submit" id="botton1">Ver resultado</button>
+</form>
+{% endif %}
+{% endblock %}

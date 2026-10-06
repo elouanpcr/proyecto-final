@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>¿Dónde va este residuo?</h1>
+<form method="POST" class="buscador">
+    <input type="text" name="item" value="{{ buscado }}" placeholder="Ej: vidrio, papel, pila..." required autofocus>
+    <button id="botton1" type="submit">Clasificar</button>
+    <button id="botton2" type="submit" formaction="{{ url_for('info') }}" class="secundario">Más información</button>
+</form>
+
+{% if resultado %}
+<section class="resultado" style="--c: {{ resultado.color }}">
+    <p class="item">{{ resultado.item|capitalize }}</p>
+    <h2>Contenedor {{ resultado.cont }}</h2>
+    <p>{{ resultado.nombre }}</p>
+    <p class="tip">{{ resultado.tip }}</p>
+</section>
+{% elif buscado %}
+<section class="aviso">
+    <p>No encontré «{{ buscado }}».</p>
+    {% if sugerencias %}
+    <p>¿Quisiste decir?
+        {% for s in sugerencias %}
+        <form method="POST" class="inline"><input type="hidden" name="item" value="{{ s }}"><button class="enlace">{{ s }}</button></form>
+        {% endfor %}
+    </p>
+    {% else %}
+    <p>Prueba con una palabra más simple, por ejemplo «lata» o «papel».</p>
+    {% endif %}
+</section>
+{% endif %}
+
+{% if historial %}
+<section class="historial">
+    <h3>Tus últimas búsquedas</h3>
+    {% for h in historial %}
+    <form method="POST" class="inline"><input type="hidden" name="item" value="{{ h }}"><button class="chip">{{ h }}</button></form>
+    {% endfor %}
+    <a class="limpiar" href="{{ url_for('limpiar') }}">Borrar historial</a>
+</section>
+{% endif %}
+{% endblock %}

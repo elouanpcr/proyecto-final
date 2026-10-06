@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %}Guía de colores · EcoBot{% endblock %}
+{% block contenido %}
+<h1>Guía de contenedores</h1>
+{% for k, c in contenedores.items() %}
+<section class="franja" style="--c: {{ c.color }}">
+    <h2>{{ k|capitalize }}: {{ c.nombre }}</h2>
+    <p>{% for i in grupos[k] %}<a class="chip" href="{{ url_for('info', item=i) }}">{{ i }}</a>{% endfor %}</p>
+</section>
+{% endfor %}
+{% endblock %}

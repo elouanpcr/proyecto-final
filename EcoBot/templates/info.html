@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block titulo %}Más información · EcoBot{% endblock %}
+{% block contenido %}
+{% if r %}
+<h1>{{ r.item|capitalize }}</h1>
+<section class="resultado" style="--c: {{ r.color }}">
+    <h2>Contenedor {{ r.cont }}: {{ r.nombre }}</h2>
+    <dl>
+        <dt>Tiempo en descomponerse</dt><dd>{{ r.tiempo }}</dd>
+        <dt>Cómo prepararlo</dt><dd>{{ r.tip }}</dd>
+    </dl>
+</section>
+{% else %}
+<h1>Más información</h1>
+<section class="aviso">
+    {% if item %}<p>No tengo datos de «{{ item }}».</p>{% else %}<p>Escribe un residuo en la página principal para ver su detalle.</p>{% endif %}
+    {% for s in sugerencias %}<a class="chip" href="{{ url_for('info', item=s) }}">{{ s }}</a>{% endfor %}
+</section>
+{% endif %}
+<p><a href="{{ url_for('index') }}">Volver a clasificar</a></p>
+{% endblock %}
